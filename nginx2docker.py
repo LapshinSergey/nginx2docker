@@ -65,7 +65,7 @@ if sys.argv[1] == 'add-to-pool':
     server_name = sys.argv[2]
     container_name = sys.argv[3]
     free_port = get_free_port()
-    fp = open('nginx-template.j2','r')
+    fp = open(os.path.dirname( sys.argv[0] ) + '/nginx-template.j2','r')
     template = jinja2.Template (fp.read())
     try:
       f_nginx_conf  = open(NGINX_CONFD_DIR + server_name + '.autopool.conf','x')
