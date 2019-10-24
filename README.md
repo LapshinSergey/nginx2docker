@@ -10,8 +10,8 @@
 Для запуска демона:
 `./nginx2docker.py daemon`
 
-Для запуска контейнера на первом свободном пору (где test.lapshin.pro - hostname который необходимо привязать):
-`./nginx2docker.py add-to-pool test.lapshin.pro`
+Для запуска контейнера на первом свободном пору (где test.lapshin.pro - hostname который необходимо привязать, nginx - имя образа для запуска):
+`./nginx2docker.py add-to-pool test.lapshin.pro nginx`
 
 ### Возможности:
 * Получение первого tcp свободного порта из пула;

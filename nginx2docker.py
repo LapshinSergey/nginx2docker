@@ -63,6 +63,7 @@ if sys.argv[1] == 'freeport':
 if sys.argv[1] == 'add-to-pool':
   #if sys.argv[2]
     server_name = sys.argv[2]
+    container_name = sys.argv[3]
     free_port = get_free_port()
     fp = open('nginx-template.j2','r')
     template = jinja2.Template (fp.read())
@@ -72,7 +73,7 @@ if sys.argv[1] == 'add-to-pool':
       print('[Error] File exist')
       sys.exit(1)
     else:
-      docker_client.containers.run( APP_CONTAINER_NAME, 
+      docker_client.containers.run( container_name, 
                                     detach = True, 
                                     auto_remove = True, 
                                     ports = { '80/tcp':('172.17.0.1', free_port) },
