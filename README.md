@@ -28,8 +28,8 @@
 yum install nginx -y
 
 Установка интерпретатора python и дополнительных модулей:
-yum install python3 python3-devel -y
-pip3 install flask psutil termcolor
+`yum install python3 python3-devel -y` и 
+`pip3 install flask psutil termcolor docker`
 
 Для поддержки SSL от Let's Encrypt необходимо установить:
 yum install certbot python2-certbot-nginx
