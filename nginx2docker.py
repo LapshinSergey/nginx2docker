@@ -76,14 +76,14 @@ if sys.argv[1] == 'add-to-pool':
       docker_client.containers.run( container_name, 
                                     detach = True, 
                                     auto_remove = True, 
-                                    ports = { '80/tcp':('172.17.0.1', free_port) },
+                                    ports = { '80/tcp':('127.0.0.1', free_port) },
                                     name = randomStr() + '_autopool' )
       pass
     finally:
       fp.close()
     f_nginx_conf.write (template.render(server_name = server_name,
                                         container_port = free_port,
-                                        container_addr = '172.17.0.1'))
+                                        container_addr = '127.0.0.1'))
 if sys.argv[1] == 'clean':
   for file_ in glob.glob(NGINX_CONFD_DIR+'*.autopool.conf'):
     os.remove(file_)
