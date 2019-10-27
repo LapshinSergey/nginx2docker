@@ -11,6 +11,7 @@ import psutil
 import jinja2
 
 APP_CONTAINER_NAME = 'nginx'
+APP_SSL = 'True'
 FREE_PORTS = range(60001,60999)
 NGINX_CONFD_DIR = '/etc/nginx/conf.d/'
 
@@ -84,6 +85,11 @@ if sys.argv[1] == 'add-to-pool':
     f_nginx_conf.write (template.render(server_name = server_name,
                                         container_port = free_port,
                                         container_addr = '127.0.0.1'))
+    if (APP_SSL == 'True')
+      subprocess.Popen('certbot -n -d '+ server_name +' --nginx --redirect', shell=True, stdout=subprocess.PIPE).stdout.read()
+    print ('Nginx reload .... ')
+    subprocess.call(["systemctl", "restart nginx"])
+    print ('You domain? click here: https://'+server_name)
 if sys.argv[1] == 'clean':
   for file_ in glob.glob(NGINX_CONFD_DIR+'*.autopool.conf'):
     os.remove(file_)
