@@ -91,7 +91,7 @@ if sys.argv[1] == 'add-to-pool':
     if (APP_SSL == 'True'):
       subprocess.call(['sudo','/usr/bin/certbot', '-n', '-d', server_name, '--nginx', '--redirect'])
       if (APP_HTTP2 == 'True'):
-        subprocess.call(['sudo','sed', '-i.bak', '-e', '"s/listen 443 ssl;/listen 443 ssl http2;/g"', NGINX_CONFD_DIR + server_name + '.autopool.conf'])
+        subprocess.call(['sudo','sed', '-i.bak', '-e', '\'s/listen 443 ssl;/listen 443 ssl http2;/g\'', NGINX_CONFD_DIR + server_name + '.autopool.conf'])
     print ('Nginx reload .... ')
     subprocess.call(['sudo',"systemctl", "restart", "nginx"])
     print ('You domain? click here: https://'+server_name)
