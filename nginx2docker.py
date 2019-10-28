@@ -9,6 +9,7 @@ import glob
 import flask
 import psutil
 import jinja2
+import subprocess
 
 APP_CONTAINER_NAME = 'nginx'
 APP_SSL = 'True'
