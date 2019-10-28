@@ -72,7 +72,7 @@ if sys.argv[1] == 'add-to-pool':
     try:
       f_nginx_conf  = open(NGINX_CONFD_DIR + server_name + '.autopool.conf','x')
     except FileExistsError:
-      print('[Error] File exist')
+      print('[Error] Nginx file config exist')
       sys.exit(1)
     else:
       docker_client.containers.run( container_name, 
@@ -86,6 +86,7 @@ if sys.argv[1] == 'add-to-pool':
     f_nginx_conf.write (template.render(server_name = server_name,
                                         container_port = free_port,
                                         container_addr = '127.0.0.1'))
+    f_nginx_conf.close()
     if (APP_SSL == 'True'):
       subprocess.call(['sudo','/usr/bin/certbot', '-n', '-d', server_name, '--nginx', '--redirect'])
     print ('Nginx reload .... ')
