@@ -87,9 +87,9 @@ if sys.argv[1] == 'add-to-pool':
                                         container_port = free_port,
                                         container_addr = '127.0.0.1'))
     if (APP_SSL == 'True'):
-      subprocess.call(['/usr/bin/certbot', '-n -d '+ server_name +' --nginx --redirect'])
+      subprocess.call(['sudo','/usr/bin/certbot', '-n','-d ',server_name,'--nginx','--redirect'])
     print ('Nginx reload .... ')
-    subprocess.call(["systemctl", "restart", "nginx"])
+    subprocess.call(['sudo',"systemctl", "restart", "nginx"])
     print ('You domain? click here: https://'+server_name)
 if sys.argv[1] == 'clean':
   for file_ in glob.glob(NGINX_CONFD_DIR+'*.autopool.conf'):
