@@ -89,7 +89,7 @@ if sys.argv[1] == 'add-to-pool':
     if (APP_SSL == 'True'):
       subprocess.call(['/usr/bin/certbot', '-n -d '+ server_name +' --nginx --redirect'])
     print ('Nginx reload .... ')
-    subprocess.call(["systemctl", "restart nginx"])
+    subprocess.call(["systemctl", "restart", "nginx"])
     print ('You domain? click here: https://'+server_name)
 if sys.argv[1] == 'clean':
   for file_ in glob.glob(NGINX_CONFD_DIR+'*.autopool.conf'):
