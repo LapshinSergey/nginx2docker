@@ -16,6 +16,7 @@ APP_SSL = 'True'
 APP_HTTP2 = 'True'
 FREE_PORTS = range(60001,60999)
 NGINX_CONFD_DIR = '/etc/nginx/conf.d/'
+APP_NGINX_CONF_WRITE_MODE = 'w'
 
 argv_flag = {};
 def randomStr(stringLength=10):
@@ -71,7 +72,7 @@ if sys.argv[1] == 'add-to-pool':
     fp = open(os.path.dirname( sys.argv[0] ) + '/nginx-template.j2','r')
     template = jinja2.Template (fp.read())
     try:
-      f_nginx_conf  = open(NGINX_CONFD_DIR + server_name + '.autopool.conf','x')
+      f_nginx_conf  = open(NGINX_CONFD_DIR + server_name + '.autopool.conf',APP_NGINX_CONF_WRITE_MODE)
     except FileExistsError:
       print('[Error] Nginx file config exist')
       sys.exit(1)
