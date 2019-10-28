@@ -87,7 +87,7 @@ if sys.argv[1] == 'add-to-pool':
                                         container_port = free_port,
                                         container_addr = '127.0.0.1'))
     if (APP_SSL == 'True'):
-      subprocess.Popen('certbot -n -d '+ server_name +' --nginx --redirect', shell=True, stdout=subprocess.PIPE).stdout.read()
+      subprocess.call('certbot -n -d '+ server_name +' --nginx --redirect')
     print ('Nginx reload .... ')
     subprocess.call(["systemctl", "restart nginx"])
     print ('You domain? click here: https://'+server_name)
